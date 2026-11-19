@@ -9,8 +9,9 @@
   --gold-soft: rgba(184, 152, 112, 0.85);
   --line: rgba(184, 152, 112, 0.28);
   --line-strong: rgba(184, 152, 112, 0.55);
-  --font-display: "Bodoni Moda", "Times New Roman", serif;
-  --font-body: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sub: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
   --pad-x: clamp(1.5rem, 6.5vw, 7rem);
   --pad-y: clamp(3.5rem, 10vh, 7.5rem);
   --header-h: 3.4rem;
@@ -26,9 +27,10 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: clamp(1.1rem, 1.15vw + 0.7rem, 1.35rem);
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: clamp(1.02rem, 0.4vw + 0.9rem, 1.125rem);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
   background: var(--bg);
   color: var(--cream);
   -webkit-font-smoothing: antialiased;
@@ -43,19 +45,19 @@ em { font-style: italic; }
 
 /* Type */
 .eyebrow {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
   font-size: 0.68rem;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
   line-height: 1.4;
 }
 .kicker {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--cream-dim);
   line-height: 1.5;
@@ -63,32 +65,39 @@ em { font-style: italic; }
 .display {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(2.4rem, 4.8vw, 4.6rem);
-  line-height: 1.05;
-  letter-spacing: 0.01em;
+  font-size: clamp(2.35rem, 4.6vw, 4.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   color: var(--cream);
 }
 .display.caps {
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   font-weight: 500;
 }
 .lede {
+  font-family: var(--font-body);
+  font-weight: 400;
   color: var(--cream-dim);
-  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
-  line-height: 1.45;
-  max-width: 28em;
+  font-size: clamp(1.05rem, 1.05vw, 1.2rem);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  max-width: 36em;
 }
 .body {
+  font-family: var(--font-body);
+  font-weight: 400;
   color: var(--cream-dim);
-  max-width: 32em;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  max-width: 36em;
 }
 .body + .body { margin-top: 1.1em; }
 .label {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -127,10 +136,10 @@ em { font-style: italic; }
   pointer-events: auto;
 }
 .brand {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
   font-size: 0.68rem;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -139,18 +148,20 @@ em { font-style: italic; }
   gap: clamp(1rem, 2.2vw, 2.2rem);
 }
 .site-header nav a {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
+  font-weight: 500;
   font-size: 0.64rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cream-dim);
   transition: color 0.3s ease;
 }
 .site-header nav a:hover { color: var(--cream); }
 .header-meta {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
+  font-weight: 500;
   font-size: 0.64rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cream-mute);
 }
@@ -158,7 +169,8 @@ em { font-style: italic; }
   .site-header nav, .header-meta { display: none; }
 }
 
-/* Hero — copy left in two stacked blocks; full uncropped portrait on the right, natural height */
+/* Hero — copy left; tall uncropped portrait on the right sets the section height.
+   Copy ends well above the portrait's bottom edge; the next module starts after the portrait. */
 .hero {
   display: grid;
   grid-template-columns: 50vw 50vw;
@@ -167,6 +179,7 @@ em { font-style: italic; }
   overflow-x: clip;
   align-items: stretch;
   background: var(--bg);
+  margin-bottom: clamp(3.5rem, 10vh, 7.5rem);
 }
 .hero-col {
   display: flex;
@@ -174,24 +187,24 @@ em { font-style: italic; }
   min-width: 0;
   min-height: 100%;
   box-sizing: border-box;
-  padding: calc(var(--header-h) + 2.2rem) var(--pad-x) 3.4rem;
+  padding: calc(var(--header-h) + 2.2rem) var(--pad-x) clamp(8.5rem, 22vh, 14rem);
 }
 .hero-wordmark { flex: 0 0 auto; }
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.55rem, 2.6vw, 2.35rem);
-  letter-spacing: 0.1em;
-  line-height: 1;
+  font-size: clamp(1.7rem, 2.8vw, 2.55rem);
+  letter-spacing: 0.06em;
+  line-height: 1.05;
   text-transform: uppercase;
   color: var(--cream);
 }
 .hero-sub {
   margin-top: 0.55rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: clamp(0.68rem, 0.85vw, 0.78rem);
-  letter-spacing: 0.28em;
+  font-size: clamp(0.68rem, 0.8vw, 0.76rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -218,9 +231,9 @@ em { font-style: italic; }
   max-width: 28rem;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.4rem, 2.05vw, 1.9rem);
-  line-height: 1.28;
-  letter-spacing: 0.01em;
+  font-size: clamp(1.4rem, 2vw, 1.95rem);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
   color: var(--cream);
 }
 .hero-photo {
@@ -263,12 +276,15 @@ em { font-style: italic; }
     max-width: 100%;
     height: auto;
   }
+  .hero {
+    margin-bottom: 2.4rem;
+  }
   .hero-col {
     height: auto;
     min-height: 0;
-    padding: 2.4rem var(--pad-x) 3rem;
+    padding: 2.4rem var(--pad-x) 3.2rem;
   }
-  .hero h1 { font-size: clamp(1.45rem, 7vw, 2rem); }
+  .hero h1 { font-size: clamp(1.55rem, 7vw, 2.1rem); }
   .hero-approach-block { margin-top: 1.8rem; }
   .hero-paragraphs {
     justify-content: flex-start;
@@ -276,7 +292,8 @@ em { font-style: italic; }
   }
   .hero-paragraphs p {
     max-width: none;
-    font-size: clamp(1.35rem, 6.2vw, 1.55rem);
+    font-size: clamp(1.3rem, 5.6vw, 1.5rem);
+    line-height: 1.35;
   }
 }
 
@@ -335,7 +352,7 @@ em { font-style: italic; }
   padding: var(--pad-y) var(--pad-x);
 }
 .steakhouse-copy h2 { max-width: 12em; margin: 0.9rem 0 1.3rem; }
-.steakhouse-copy .body { font-size: clamp(1.15rem, 1.6vw, 1.4rem); }
+.steakhouse-copy .body { font-size: clamp(1.05rem, 1.15vw, 1.2rem); }
 
 @media (max-width: 800px) {
   .steakhouse {
@@ -381,23 +398,27 @@ em { font-style: italic; }
   font-size: clamp(2rem, 3.5vw, 3.2rem);
   color: var(--gold);
   line-height: 1;
+  letter-spacing: -0.02em;
   margin-bottom: 0.85rem;
 }
 .pillar h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
   font-size: 0.78rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cream);
   margin-bottom: 1rem;
 }
 .pillar .deck-line {
+  font-family: var(--font-body);
   color: var(--cream);
   font-style: italic;
+  font-weight: 400;
   margin-bottom: 0.85rem;
+  line-height: 1.5;
 }
-.pillar p { color: var(--cream-dim); }
+.pillar p { color: var(--cream-dim); line-height: 1.65; }
 
 @media (max-width: 800px) {
   .pillars-grid { grid-template-columns: 1fr; gap: 2.4rem; }
@@ -434,27 +455,31 @@ em { font-style: italic; }
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   color: var(--gold);
   line-height: 1;
+  letter-spacing: -0.02em;
   margin-bottom: 0.7rem;
 }
 .step h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cream);
   margin-bottom: 0.3rem;
 }
 .step .month {
+  font-family: var(--font-body);
   font-style: italic;
+  font-weight: 400;
   color: var(--cream-mute);
   margin-bottom: 1.15rem;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
 }
 .step li {
   color: var(--cream-dim);
   padding: 0.28rem 0;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 @media (min-width: 801px) {
@@ -465,9 +490,50 @@ em { font-style: italic; }
   .step + .step { padding-top: 2rem; border-top: 1px solid var(--line); }
 }
 
-/* Included — two programs, photo as a vertical inset */
+/* Included — prominent monthly price, then two program columns */
 .included { background: var(--bg-soft); }
-.included .lede { margin: 1.15rem 0 2.6rem; }
+.included-pricing {
+  margin: 1.15rem 0 clamp(2.4rem, 5vh, 3.4rem);
+  max-width: 36rem;
+}
+.included-price {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3.2rem, 7vw, 5.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  margin: 0;
+}
+.included-price .per {
+  font-family: var(--font-sub);
+  font-weight: 500;
+  font-size: clamp(0.78rem, 1.2vw, 1rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  margin-left: 0.35em;
+  vertical-align: middle;
+}
+.included-setup {
+  margin: 0.85rem 0 1.15rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--cream);
+}
+.included-term {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1.02rem, 0.4vw + 0.9rem, 1.125rem);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: var(--cream-dim);
+  max-width: 34em;
+  margin: 0;
+}
 .included-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -477,33 +543,57 @@ em { font-style: italic; }
 .bundle h3 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-size: clamp(1.45rem, 2.1vw, 1.95rem);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
   margin: 0 0 0.4rem;
 }
 .bundle .price-note {
   color: var(--gold);
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 1.4rem;
-}
-.item + .item { margin-top: 1.25rem; }
-.item h4 {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1.15rem;
+}
+.bundle-list {
+  border-top: 1px solid var(--line);
+}
+.bundle-list li {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--cream-dim);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  padding-left: 1.15rem;
+  position: relative;
+}
+.bundle-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.35em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.85;
+}
+.bundle-list .item-label {
+  display: block;
+  font-family: var(--font-sub);
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.35rem;
+  margin: 0 0 0.3rem;
+  line-height: 1.4;
 }
-.item p, .bundle-list li {
-  color: var(--cream-dim);
-  font-size: 1.05rem;
-  line-height: 1.45;
-}
-.bundle-list li { padding: 0.32rem 0; }
 
 @media (max-width: 800px) {
   .included-layout { grid-template-columns: 1fr; }
@@ -520,35 +610,40 @@ em { font-style: italic; }
 .principle h3 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
   color: var(--cream);
   margin-bottom: 0.4rem;
 }
-.principle p { color: var(--cream-dim); }
+.principle p { color: var(--cream-dim); line-height: 1.65; }
 .footnote {
   margin-top: 2rem;
   color: var(--cream-mute);
   font-style: italic;
-  max-width: 32em;
+  font-weight: 400;
+  max-width: 36em;
+  line-height: 1.6;
 }
 .baseline {
   border: 1px solid var(--line);
   padding: clamp(1.4rem, 2.5vw, 2rem);
 }
 .baseline h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 1.1rem;
 }
 .baseline dl { margin: 0; }
 .baseline dt {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
+  font-family: var(--font-sub);
+  font-weight: 500;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--cream);
   margin-top: 0.95rem;
@@ -557,14 +652,15 @@ em { font-style: italic; }
 .baseline dd {
   margin: 0.25rem 0 0;
   color: var(--cream-dim);
-  font-size: 1.02rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 .baseline .source {
   margin-top: 1.2rem;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--cream-mute);
   font-style: italic;
+  line-height: 1.55;
 }
 
 @media (max-width: 800px) {
@@ -608,14 +704,15 @@ em { font-style: italic; }
   font-weight: 500;
   font-size: clamp(4rem, 9vw, 7.2rem);
   line-height: 0.9;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--cream);
 }
 .price-sub {
   margin: 0.7rem 0 2rem;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-family: var(--font-sub);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cream-mute);
 }
@@ -625,17 +722,19 @@ em { font-style: italic; }
   font-size: clamp(2rem, 4vw, 3.2rem);
   color: var(--cream);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 .setup-price .plus {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 500;
   margin-right: 0.15em;
 }
 .term-label {
   margin: 0.55rem 0 2.4rem;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-family: var(--font-sub);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -671,24 +770,24 @@ em { font-style: italic; }
   border-top: 1px solid var(--line);
 }
 .phase h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: 0.74rem;
-  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 0.7rem;
 }
-.phase p { color: var(--cream-dim); }
+.phase p { color: var(--cream-dim); line-height: 1.65; }
 .case-note {
   grid-column: 1 / -1;
   margin-top: 0.6rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   color: var(--cream-mute);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   max-width: 46em;
-  line-height: 1.5;
+  line-height: 1.65;
 }
 .case-note strong {
   font-weight: 600;
@@ -740,25 +839,26 @@ em { font-style: italic; }
   font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(3.2rem, 8vw, 6.8rem);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 0.95;
+  line-height: 0.98;
 }
 .close-line {
   margin-top: 1.4rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sub);
   font-weight: 500;
-  font-size: clamp(0.95rem, 1.6vw, 1.35rem);
+  font-size: clamp(0.82rem, 1.2vw, 1.05rem);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
-  line-height: 1.45;
-  max-width: 18em;
+  line-height: 1.5;
+  max-width: 22em;
 }
 .close-foot {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-family: var(--font-sub);
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--cream-dim);
 }
