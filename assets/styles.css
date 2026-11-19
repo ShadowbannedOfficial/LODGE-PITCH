@@ -638,6 +638,7 @@ em { font-style: italic; }
 }
 
 /* Measured — typographic, then a quiet baseline panel */
+.measured { background: var(--bg-soft); }
 .measured-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -705,7 +706,8 @@ em { font-style: italic; }
   .measured-grid { grid-template-columns: 1fr; }
 }
 
-/* Next */
+/* Next — typographic band after the included photo module */
+.next { background: var(--bg-soft); }
 .next-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
