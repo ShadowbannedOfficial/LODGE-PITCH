@@ -190,21 +190,23 @@ em { font-style: italic; }
   padding: calc(var(--header-h) + 2.2rem) var(--pad-x) clamp(8.5rem, 22vh, 14rem);
 }
 .hero-wordmark { flex: 0 0 auto; }
-.hero h1 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.7rem, 2.8vw, 2.55rem);
-  letter-spacing: 0.06em;
-  line-height: 1.05;
-  text-transform: uppercase;
-  color: var(--cream);
+.hero-logo {
+  margin: 0;
+  line-height: 0;
+}
+.hero-logo picture,
+.hero-logo img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 .hero-sub {
-  margin-top: 0.55rem;
+  margin-top: 1rem;
   font-family: var(--font-sub);
   font-weight: 500;
-  font-size: clamp(0.68rem, 0.8vw, 0.76rem);
-  letter-spacing: 0.22em;
+  font-size: clamp(0.78rem, 1.05vw, 0.98rem);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -284,7 +286,8 @@ em { font-style: italic; }
     min-height: 0;
     padding: 2.4rem var(--pad-x) 3.2rem;
   }
-  .hero h1 { font-size: clamp(1.55rem, 7vw, 2.1rem); }
+  .hero-logo img { width: 100%; max-width: 22rem; }
+  .hero-sub { font-size: clamp(0.72rem, 3.2vw, 0.88rem); }
   .hero-approach-block { margin-top: 1.8rem; }
   .hero-paragraphs {
     justify-content: flex-start;
@@ -490,16 +493,44 @@ em { font-style: italic; }
   .step + .step { padding-top: 2rem; border-top: 1px solid var(--line); }
 }
 
-/* Included — prominent monthly price, then two program columns */
-.included { background: var(--bg-soft); }
+/* Included — Benedict photo left; price, terms, and programs on the right */
+.included {
+  display: grid;
+  grid-template-columns: 50vw 50vw;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  align-items: start;
+  background: var(--bg);
+}
+.included-photo {
+  width: 50vw;
+  max-width: 50vw;
+  position: relative;
+  overflow: visible;
+}
+.included-photo picture,
+.included-photo img {
+  display: block;
+  width: 50vw;
+  max-width: 50vw;
+  height: auto;
+}
+.included-copy {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: var(--pad-y) var(--pad-x);
+}
+.included-copy .eyebrow { margin-bottom: 1.1rem; }
 .included-pricing {
-  margin: 1.15rem 0 clamp(2.4rem, 5vh, 3.4rem);
-  max-width: 36rem;
+  margin: 1.05rem 0 1.4rem;
 }
 .included-price {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(3.2rem, 7vw, 5.6rem);
+  font-size: clamp(3rem, 5.6vw, 4.8rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--cream);
@@ -508,7 +539,7 @@ em { font-style: italic; }
 .included-price .per {
   font-family: var(--font-sub);
   font-weight: 500;
-  font-size: clamp(0.78rem, 1.2vw, 1rem);
+  font-size: clamp(0.72rem, 1vw, 0.92rem);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cream-dim);
@@ -516,28 +547,21 @@ em { font-style: italic; }
   vertical-align: middle;
 }
 .included-setup {
-  margin: 0.85rem 0 1.15rem;
+  margin: 0.8rem 0 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
   letter-spacing: -0.015em;
   line-height: 1.2;
   color: var(--cream);
 }
-.included-term {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: clamp(1.02rem, 0.4vw + 0.9rem, 1.125rem);
-  line-height: 1.65;
-  letter-spacing: -0.01em;
-  color: var(--cream-dim);
-  max-width: 34em;
-  margin: 0;
+.included-terms {
+  margin: 0 0 clamp(2rem, 4vh, 2.8rem);
 }
 .included-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vh, 2.8rem);
   align-items: start;
 }
 .bundle h3 {
@@ -596,6 +620,20 @@ em { font-style: italic; }
 }
 
 @media (max-width: 800px) {
+  .included {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    overflow-x: visible;
+  }
+  .included-photo,
+  .included-photo picture,
+  .included-photo img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .included-copy { min-height: 0; padding: 2.6rem var(--pad-x) 3.2rem; }
   .included-layout { grid-template-columns: 1fr; }
 }
 
@@ -665,97 +703,6 @@ em { font-style: italic; }
 
 @media (max-width: 800px) {
   .measured-grid { grid-template-columns: 1fr; }
-}
-
-/* Investment — photo left, figures right (inverse of the hero) */
-.investment {
-  display: grid;
-  grid-template-columns: 50vw 50vw;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-  align-items: start;
-  background: var(--bg);
-}
-.investment-photo {
-  width: 50vw;
-  max-width: 50vw;
-  position: relative;
-  overflow: visible;
-}
-.investment-photo picture,
-.investment-photo img {
-  display: block;
-  width: 50vw;
-  max-width: 50vw;
-  height: auto;
-}
-.investment-copy {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100%;
-  padding: var(--pad-y) var(--pad-x);
-}
-.investment .label { margin-bottom: 0.8rem; }
-.price {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(4rem, 9vw, 7.2rem);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  color: var(--cream);
-}
-.price-sub {
-  margin: 0.7rem 0 2rem;
-  font-family: var(--font-sub);
-  font-weight: 500;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--cream-mute);
-}
-.setup-price {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  color: var(--cream);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-.setup-price .plus {
-  font-family: var(--font-display);
-  font-weight: 500;
-  margin-right: 0.15em;
-}
-.term-label {
-  margin: 0.55rem 0 2.4rem;
-  font-family: var(--font-sub);
-  font-weight: 500;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.investment .body { margin-top: 0.4rem; }
-
-@media (max-width: 800px) {
-  .investment {
-    display: flex;
-    flex-direction: column;
-    grid-template-columns: none;
-    overflow-x: visible;
-  }
-  .investment-photo,
-  .investment-photo picture,
-  .investment-photo img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    order: -1;
-  }
-  .investment-copy { min-height: 0; padding: 2.6rem var(--pad-x) 3.2rem; }
 }
 
 /* Next */
