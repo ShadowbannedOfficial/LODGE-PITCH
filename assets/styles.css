@@ -187,22 +187,38 @@ em { font-style: italic; }
   min-width: 0;
   min-height: 100%;
   box-sizing: border-box;
-  padding: calc(var(--header-h) + 2.2rem) var(--pad-x) clamp(8.5rem, 22vh, 14rem);
+  padding: calc(var(--header-h) + 2.2rem + 18vh) var(--pad-x) clamp(8.5rem, 22vh, 14rem);
 }
-.hero-wordmark { flex: 0 0 auto; }
+.hero-wordmark {
+  flex: 0 0 auto;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  align-self: flex-start;
+}
 .hero-logo {
   margin: 0;
   line-height: 0;
+  display: block;
+  width: 100%;
 }
-.hero-logo picture,
+.hero-logo picture {
+  display: block;
+  /* Preferred width 0 so the wrapper shrinks to the subheading; then stretch to 100%. */
+  width: 0;
+  min-width: 100%;
+}
 .hero-logo img {
   display: block;
   width: 100%;
-  max-width: 100%;
   height: auto;
+  vertical-align: top;
 }
 .hero-sub {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
   font-family: var(--font-sub);
   font-weight: 500;
   font-size: clamp(0.78rem, 1.05vw, 0.98rem);
@@ -215,7 +231,7 @@ em { font-style: italic; }
   display: flex;
   flex-direction: column;
   min-height: 0;
-  margin-top: 2.6rem;
+  margin-top: 12vh;
 }
 .hero-approach-block .eyebrow {
   flex: 0 0 auto;
@@ -226,7 +242,7 @@ em { font-style: italic; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: clamp(1.4rem, 3.5vh, 2.8rem);
+  gap: clamp(0.9rem, 2vh, 1.8rem);
 }
 .hero-paragraphs p {
   margin: 0;
@@ -286,9 +302,10 @@ em { font-style: italic; }
     min-height: 0;
     padding: 2.4rem var(--pad-x) 3.2rem;
   }
-  .hero-logo img { width: 100%; max-width: 22rem; }
+  .hero-wordmark { max-width: 100%; }
+  .hero-logo img { width: 100%; }
   .hero-sub { font-size: clamp(0.72rem, 3.2vw, 0.88rem); }
-  .hero-approach-block { margin-top: 1.8rem; }
+  .hero-approach-block { margin-top: 2.4rem; }
   .hero-paragraphs {
     justify-content: flex-start;
     gap: 1.45rem;
@@ -429,7 +446,7 @@ em { font-style: italic; }
 }
 
 /* 90-day timeline */
-.ninety { background: var(--bg); }
+.ninety { background: var(--bg-soft); }
 .ninety .lede { margin: 1.15rem 0 2.8rem; }
 .timeline { position: relative; }
 .timeline-track {
@@ -493,48 +510,23 @@ em { font-style: italic; }
   .step + .step { padding-top: 2rem; border-top: 1px solid var(--line); }
 }
 
-/* Included — Benedict photo left; price, terms, and programs on the right */
-.included {
+/* Included — heading, then setup ($2,000) left and monthly ($4,500) right */
+.included { background: var(--bg); }
+.included-layout {
   display: grid;
-  grid-template-columns: 50vw 50vw;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
-  background: var(--bg);
-}
-.included-photo {
-  width: 50vw;
-  max-width: 50vw;
-  position: relative;
-  overflow: visible;
-}
-.included-photo picture,
-.included-photo img {
-  display: block;
-  width: 50vw;
-  max-width: 50vw;
-  height: auto;
-}
-.included-copy {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  padding: var(--pad-y) var(--pad-x);
-}
-.included-copy .eyebrow { margin-bottom: 1.1rem; }
-.included-pricing {
-  margin: 1.05rem 0 1.4rem;
+  margin-top: clamp(2rem, 4vh, 3rem);
 }
 .included-price {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(3rem, 5.6vw, 4.8rem);
+  font-size: clamp(3rem, 5.2vw, 4.6rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--cream);
-  margin: 0;
+  margin: 0 0 0.7rem;
 }
 .included-price .per {
   font-family: var(--font-sub);
@@ -546,23 +538,17 @@ em { font-style: italic; }
   margin-left: 0.35em;
   vertical-align: middle;
 }
-.included-setup {
-  margin: 0.8rem 0 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.25rem, 2vw, 1.7rem);
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  color: var(--cream);
-}
-.included-terms {
-  margin: 0 0 clamp(2rem, 4vh, 2.8rem);
-}
-.included-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(2rem, 4vh, 2.8rem);
-  align-items: start;
+.included-term {
+  margin: clamp(2.2rem, 4vh, 3rem) 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1.02rem, 0.4vw + 0.9rem, 1.125rem);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: var(--cream-dim);
+  max-width: 46em;
 }
 .bundle h3 {
   font-family: var(--font-display);
@@ -620,20 +606,6 @@ em { font-style: italic; }
 }
 
 @media (max-width: 800px) {
-  .included {
-    display: flex;
-    flex-direction: column;
-    grid-template-columns: none;
-    overflow-x: visible;
-  }
-  .included-photo,
-  .included-photo picture,
-  .included-photo img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-  .included-copy { min-height: 0; padding: 2.6rem var(--pad-x) 3.2rem; }
   .included-layout { grid-template-columns: 1fr; }
 }
 
@@ -707,7 +679,7 @@ em { font-style: italic; }
 }
 
 /* Next — typographic band after the included photo module */
-.next { background: var(--bg-soft); }
+.next { background: var(--bg); }
 .next-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
