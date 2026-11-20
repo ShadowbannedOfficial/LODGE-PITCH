@@ -821,3 +821,15 @@ em { font-style: italic; }
   .clip-reveal { clip-path: none; }
   .timeline-fill { width: 100%; }
 }
+
+/* Close: photo on the left at full brightness, black background, copy on the right */
+.close { display: grid; grid-template-columns: 50vw 50vw; align-items: stretch; }
+.close-photo { position: relative; inset: auto; display: flex; align-items: center; justify-content: flex-start; background: #000; }
+.close-photo picture { display: block; width: 100%; }
+.close-photo img { width: 100%; height: auto; object-fit: contain; filter: none; }
+.close-veil { display: none; }
+.close-copy { width: auto; }
+@media (max-width: 800px) {
+  .close { display: flex; flex-direction: column; min-height: 0; }
+  .close-copy { padding: 2.6rem var(--pad-x) 3rem; gap: 2rem; }
+}
