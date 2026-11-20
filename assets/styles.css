@@ -179,7 +179,7 @@ em { font-style: italic; }
   overflow-x: clip;
   align-items: stretch;
   background: var(--bg);
-  margin-bottom: clamp(3.5rem, 10vh, 7.5rem);
+  margin-bottom: 0;
 }
 .hero-col {
   display: flex;
