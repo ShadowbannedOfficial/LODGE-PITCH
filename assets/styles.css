@@ -833,3 +833,11 @@ em { font-style: italic; }
   .close { display: flex; flex-direction: column; min-height: 0; }
   .close-copy { padding: 2.6rem var(--pad-x) 3rem; gap: 2rem; }
 }
+
+/* Nav with more sections */
+.site-header nav a { white-space: nowrap; }
+@media (max-width: 1200px) { .header-meta { display: none; } }
+@media (max-width: 900px) {
+  .site-header nav { overflow-x: auto; scrollbar-width: none; max-width: 70vw; }
+  .site-header nav::-webkit-scrollbar { display: none; }
+}
