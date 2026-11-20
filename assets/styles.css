@@ -841,3 +841,14 @@ em { font-style: italic; }
   .site-header nav { overflow-x: auto; scrollbar-width: none; max-width: 70vw; }
   .site-header nav::-webkit-scrollbar { display: none; }
 }
+
+/* Close: copy left, larger photo right */
+.close { grid-template-columns: 38vw 62vw; }
+.close-copy { order: 1; }
+.close-photo { order: 2; justify-content: flex-end; }
+.close-photo picture, .close-photo img { width: 62vw; max-width: 62vw; height: auto; }
+@media (max-width: 800px) {
+  .close-photo { order: 1; }
+  .close-copy { order: 2; }
+  .close-photo picture, .close-photo img { width: 100%; max-width: 100%; }
+}
